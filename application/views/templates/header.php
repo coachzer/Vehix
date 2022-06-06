@@ -112,3 +112,7 @@
         <?php if ($this->session->flashdata('category_deleted')) : ?>
             <?php echo '<p class="alert alert-warning">' . $this->session->flashdata('category_deleted') . '</p>'; ?>
         <?php endif;  ?>
+
+        <?php if ($this->session->flashdata('comment_deleted')) : ?>
+            <?php echo '<p class="alert alert-warning">' . $this->session->flashdata('comment_deleted') . '</p>'; ?>
+        <?php endif;  ?>

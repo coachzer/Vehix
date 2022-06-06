@@ -56,4 +56,23 @@ class User_model extends CI_Model
             return false;
         }
     }
+
+    public function get_topic_user($user_id, $topic_id)
+    {
+        $this->db->where('id', $user_id);
+        $query = $this->db->get_where('topics', array('id' => $topic_id))->row_array;
+
+        $result = $this->db->get('users');
+
+        if ($result->num_rows() == 1) {
+            print_r($result->row(0)->$query['id']);
+            $this->db->where('id', $result->row(0)->RID);
+            $res = $this->db->get('topics');
+            if ($res->num_rows() == 1) {
+                return $res->row(0)->$query['slug'];
+            } else return false;
+        } else {
+            return false;
+        }
+    }
 }

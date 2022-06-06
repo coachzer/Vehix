@@ -141,4 +141,27 @@ class Topics extends CI_Controller
 
         redirect('topics');
     }
+
+    public function create_rating($id)
+    {
+        $slug = $this->staff_model->get_topic($id);
+        $this->star_model->create($id);
+        $this->session->set_flashdata('rating_created', 'Your rating has been successful.');
+        redirect('topics/' . $slug);
+    }
+
+    public function ratings($id)
+    {
+        if (!$this->session->userdata('logged_in')) redirect('users/login');
+
+        $data['title'] = 'Ratings';
+
+        $data['topics'] = $this->restaurant_model->get_restaurants();
+        $data['ratings'] = $this->star_model->get_all_ratings($id);
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('topics/ratings', $data);
+        $this->load->view('templates/footer', $data);
+    }
 }

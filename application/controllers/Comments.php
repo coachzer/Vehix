@@ -19,4 +19,18 @@ class Comments extends CI_Controller
             redirect('topics/' . $slug);
         }
     }
+
+    public function delete($id)
+    {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('users/login');
+        }
+
+        $this->category_model->delete_comment($id);
+
+        // Set Message
+        $this->session->set_flashdata('comment_deleted', 'Comment has been deleted successfully.');
+
+        redirect('categories');
+    }
 }

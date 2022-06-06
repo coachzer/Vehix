@@ -23,4 +23,11 @@ class Comment_model extends CI_Model
         $query = $this->db->get_where('comments', array('topic_id' => $topic_id));
         return $query->result_array();
     }
+
+    public function delete_comment($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('comments');
+        return true;
+    }
 }

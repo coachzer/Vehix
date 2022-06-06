@@ -33,6 +33,11 @@
             <div class="card bg-light mb-3" style="max-width: 100rem;">
                 <div class="card-body">
                     <p class="card-text"><?php echo $comment['body']; ?> [by <strong><?php echo $comment['name']; ?></strong> ]</p>
+                    <?php if ($this->session->userdata('user_id') == $comment['user_id'] or $this->session->userdata('user_id') == 1) : ?>
+                        <form action="comment/delete/<?php echo $comment['id']; ?>" method="post" style="display: inline;">
+                            <input type="submit" class="btn-link text-danger" value="[X]">
+                        </form>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>
