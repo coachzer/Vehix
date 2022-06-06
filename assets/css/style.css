@@ -1,0 +1,93 @@
+html {
+	height: 90%;
+}
+
+/* Header */
+#app-navbar {
+    background: linear-gradient(0deg, rgba(34,174,195,1) 0%, rgba(45,138,253,1) 100%);
+}
+
+.navbar-toggler-icon {
+	background-image: url("https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-1/512/bars-1024.png");
+	}
+
+/* Login */
+.img-thumbnail {
+	padding: .25rem;
+	background-color: rgb(223, 220, 220);
+	border: 1px solid #d0d4d8;
+	border-radius: .25rem;
+	max-width: 100%;
+	height: auto;
+}
+
+/* Home */
+
+.carousel-inner img {
+	width: 100%;
+	/*height: 100%;*/
+}
+
+.img-karousel {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Pagination */
+.p-links {
+	margin:30px 0;
+}
+
+.p-links strong {
+	padding: 8px 13px;
+	margin:5px;
+	background-color: rgba(45,138,253,1);
+	border: 1px #ccc solid;
+}
+
+a.p-links {
+	padding: 8px 13px;
+	margin:5px;
+	background-color: rgba(45,138,253,1)a;
+	color: #d5d5d5;
+	border: 1px #ccc solid;
+}
+
+/* Body */  
+body {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	background: #eee;
+}
+
+.topic-date {
+	background: #f4f4f4;
+	padding: 2px;
+	margin: 2px 0;
+	display: block;
+}
+
+/* Footer */
+#footer {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 2;
+	justify-content: flex-end;
+}
+
+footer {
+	background: linear-gradient(0deg, rgba(45,138,253,1) 0%, rgba(34,174,195,1)  100%);
+	background-color: #7a7a7a;
+	color: #d5d5d5;
+	padding-top: 2rem;
+}
+
+footer a {
+	color: #d5d5d5;
+}
+
+.footer-links {
+	color: black;
+}
+
