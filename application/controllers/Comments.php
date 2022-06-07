@@ -26,11 +26,10 @@ class Comments extends CI_Controller
             redirect('users/login');
         }
 
-        $this->category_model->delete_comment($id);
+        $this->comment_model->delete_comment($id);
 
         // Set Message
         $this->session->set_flashdata('comment_deleted', 'Comment has been deleted successfully.');
-
-        redirect('categories');
+        redirect('topics');
     }
 }

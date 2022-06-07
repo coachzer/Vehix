@@ -51,6 +51,7 @@ class Topics extends CI_Controller
         $data['categories'] = $this->topic_model->get_categories();
 
         $this->form_validation->set_rules('title', 'Title', 'required');
+        $this->form_validation->set_rules('vehicle', 'Vehicle', 'required');
         $this->form_validation->set_rules('body', 'Body', 'required');
 
         if ($this->form_validation->run() === FALSE) {
@@ -142,26 +143,25 @@ class Topics extends CI_Controller
         redirect('topics');
     }
 
-    public function create_rating($id)
+    // Update rating
+    public function updateRating()
     {
-        $slug = $this->staff_model->get_topic($id);
-        $this->star_model->create($id);
-        $this->session->set_flashdata('rating_created', 'Your rating has been successful.');
-        redirect('topics/' . $slug);
-    }
 
-    public function ratings($id)
-    {
-        if (!$this->session->userdata('logged_in')) redirect('users/login');
+        // user_id
+        $user_id = $this->session->userdata('id');
+        print_r($user_id);
 
-        $data['title'] = 'Ratings';
+        // POST values
+        $topic_id = $this->input->post('topic_id');
+        $rating = $this->input->post('rating');
 
-        $data['topics'] = $this->restaurant_model->get_restaurants();
-        $data['ratings'] = $this->star_model->get_all_ratings($id);
+        // Update user rating and get Average rating of a post
+        $averageRating = $this->topic_model->userRating($user_id, $topic_id, $rating);
 
+        echo $averageRating;
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('topics/ratings', $data);
-        $this->load->view('templates/footer', $data);
+        // Set Message
+        $this->session->set_flashdata('rating_posted', 'Your rating has been updated.');
+        exit;
     }
 }

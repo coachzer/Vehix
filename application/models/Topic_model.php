@@ -6,7 +6,7 @@ class Topic_model extends CI_Model
         $this->load->database();
     }
 
-    public function get_topics($slug = FALSE, $limit = FALSE, $offset = FALSE)
+    /* public function get_topics($slug = FALSE, $limit = FALSE, $offset = FALSE)
     {
         if ($limit) {
             $this->db->limit($limit, $offset);
@@ -21,7 +21,158 @@ class Topic_model extends CI_Model
 
         $query = $this->db->get_where('topics', array('slug' => $slug));
         return $query->row_array();
+    } */
+
+    public function get_topics($slug = FALSE, $limit = FALSE, $offset = FALSE)
+    {
+        if ($limit) {
+            $this->db->limit($limit, $offset);
+        }
+
+        if ($slug === FALSE) {
+            $user_id = $this->session->userdata('user_id');
+            // Posts
+            $this->db->select('*');
+            $this->db->from('topics');
+            $this->db->order_by("topics.id", "DESC");
+            $this->db->join('categories', 'categories.id = topics.category_id');
+            $query = $this->db->get();
+
+            $topicResult = $query->result_array();
+
+            $topic_arr = array();
+            foreach ($topicResult as $topic) {
+                $id = $topic['id'];
+                $category_id = $topic['category_id'];
+                $title = $topic['title'];
+                $slug = $topic['slug'];
+                $vehicle = $topic['vehicle'];
+                $url = $topic['url'];
+                $body = $topic['body'];
+                $topic_image = $topic['topic_image'];
+                $date = $topic['date'];
+
+                // User rating
+                $this->db->select('rating');
+                $this->db->from('ratings');
+                $this->db->where("user_id", $user_id);
+                $this->db->where("topic_id", $id);
+                $userRatingquery = $this->db->get();
+
+                $userpostResult = $userRatingquery->result_array();
+
+                $userRating = 0;
+                if (count($userpostResult) > 0) {
+                    $userRating = $userpostResult[0]['rating'];
+                }
+
+                // Average rating
+                $this->db->select('ROUND(AVG(rating),1) as averageRating');
+                $this->db->from('ratings');
+                $this->db->where("topic_id", $id);
+                $ratingquery = $this->db->get();
+
+                $topicResult = $ratingquery->result_array();
+
+                $rating = $topicResult[0]['averageRating'];
+
+                if ($rating == '') {
+                    $rating = 0;
+                }
+
+                $topic_arr[] = array(
+                    "id" => $id,
+                    "category_id" => $category_id,
+                    "title" => $title,
+                    "slug" => $slug,
+                    "vehicle" => $vehicle,
+                    "body" => $body,
+                    "url" => $url,
+                    "rating" => $userRating,
+                    "topic_image" => $topic_image,
+                    "date" => $date,
+                    "averagerating" => $rating
+                );
+            }
+
+            return $topic_arr;
+        }
+
+        $query = $this->db->get_where('topics', array('slug' => $slug));
+        return $query->row_array();
     }
+
+    // Fetch records
+    /* public function getAllPosts()
+    {
+
+        $user_id = $this->session->userdata('user_id');
+        // Posts
+        $this->db->select('*');
+        $this->db->from('topics');
+        $this->db->order_by("topics.id", "DESC");
+        $this->db->join('categories', 'categories.id = topics.category_id');
+        $query = $this->db->get();
+
+        $topicResult = $query->result_array();
+
+        $topic_arr = array();
+        foreach ($topicResult as $topic) {
+            $id = $topic['id'];
+            $category_id = $topic['category_id'];
+            $title = $topic['title'];
+            $slug = $topic['slug'];
+            $vehicle = $topic['vehicle'];
+            $url = $topic['url'];
+            $body = $topic['body'];
+            $topic_image = $topic['topic_image'];
+            $date = $topic['date'];
+
+            // User rating
+            $this->db->select('rating');
+            $this->db->from('ratings');
+            $this->db->where("user_id", $user_id);
+            $this->db->where("topic_id", $id);
+            $userRatingquery = $this->db->get();
+
+            $userpostResult = $userRatingquery->result_array();
+
+            $userRating = 0;
+            if (count($userpostResult) > 0) {
+                $userRating = $userpostResult[0]['rating'];
+            }
+
+            // Average rating
+            $this->db->select('ROUND(AVG(rating),1) as averageRating');
+            $this->db->from('ratings');
+            $this->db->where("topic_id", $id);
+            $ratingquery = $this->db->get();
+
+            $topicResult = $ratingquery->result_array();
+
+            $rating = $topicResult[0]['averageRating'];
+
+            if ($rating == '') {
+                $rating = 0;
+            }
+
+            $topic_arr[] = array(
+                "id" => $id,
+                "category_id" => $category_id,
+                "title" => $title,
+                "slug" => $slug,
+                "vehicle" => $vehicle,
+                "body" => $body,
+                "url" => $url,
+                "rating" => $userRating,
+                "topic_image" => $topic_image,
+                "date" => $date,
+                "averagerating" => $rating
+            );
+        }
+
+        return $topic_arr;
+    } */
 
     public function create_topic($topic_image)
     {
@@ -125,10 +276,10 @@ class Topic_model extends CI_Model
         $userRatingResult = $userRatingquery->result_array();
         if (count($userRatingResult) > 0) {
 
-            $postRating_id = $userRatingResult[0]['id'];
+            $topicRating_id = $userRatingResult[0]['id'];
             // Update
             $value = array('rating' => $rating);
-            $this->db->where('id', $postRating_id);
+            $this->db->where('id', $topicRating_id);
             $this->db->update('ratings', $value);
         } else {
             $userRating = array(
@@ -142,7 +293,7 @@ class Topic_model extends CI_Model
 
         // Average rating
         $this->db->select('ROUND(AVG(rating),1) as averageRating');
-        $this->db->from('rating');
+        $this->db->from('ratings');
         $this->db->where("topic_id", $topic_id);
         $ratingquery = $this->db->get();
 

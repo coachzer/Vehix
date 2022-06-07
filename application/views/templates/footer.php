@@ -34,6 +34,37 @@
     CKEDITOR.replace('editor1');
 </script>
 
+<script type='text/javascript'>
+    $(document).ready(function() {
+
+        // Initialize
+        $('.ratingbar').rating({
+            showCaption: false,
+            showClear: false,
+            size: 'sm'
+        });
+
+        // Rating change
+        $('.ratingbar').on('rating:change', function(event, value, caption) {
+            var id = this.id;
+            var splitid = id.split('_');
+            var topic_id = splitid[1];
+
+            $.ajax({
+                url: '<?php echo base_url() ?>topics/updateRating',
+                type: 'post',
+                data: {
+                    topic_id: topic_id,
+                    rating: value
+                },
+                success: function(response) {
+                    $('#averagerating_' + topic_id).text(response);
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>

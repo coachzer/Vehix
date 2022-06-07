@@ -13,7 +13,7 @@
             <li class="list-group-item">If you choose to not register, you'll only be able to look at current topics and categories, as well as leave comments on topics.</li>
             <li class="list-group-item">Once you register, you'll have to log in.</li>
             <li class="list-group-item">Once you log in, in the upper right corner you'll be able to "Create a Topic" or "Create a Category".</li>
-            <li class="list-group-item">Here is a <a href="">demo video</a> that might help you.</li>
+            <li class="list-group-item">Here is a <a href="https://photos.app.goo.gl/kvaJDqo4tneR6Ctu5">demo video</a> that might help you.</li>
         </ul>
     </div>
 </div>
