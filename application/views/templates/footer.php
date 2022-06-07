@@ -52,13 +52,14 @@
             var topic_id = splitid[1];
 
             $.ajax({
-                url: '<?= base_url() ?>topics/updaterating',
-                type: 'post',
+                url: '<?= base_url() ?>topics/updateRating',
+                type: 'POST',
                 data: {
                     topic_id: topic_id,
-                    rating: value
+                    rating: value,
                 },
                 success: function(response) {
+                    $(topic_id).text(response);
                     $('#averagerating_' + topic_id).text(response);
                 }
             });

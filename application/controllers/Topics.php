@@ -3,6 +3,9 @@ class Topics extends CI_Controller
 {
     public function index($offset = 0)
     {
+
+        $data = array();
+
         // Pagination Configuration
         $config['base_url'] = base_url() . 'topics/index/';
         $config['total_rows'] = $this->db->count_all('topics');;
@@ -157,10 +160,10 @@ class Topics extends CI_Controller
         // Update user rating and get Average rating of a post
         $averageRating = $this->topic_model->userRating($user_id, $topic_id, $rating);
 
-        echo $averageRating;
-
         // Set Message
         $this->session->set_flashdata('rating_posted', 'Your rating has been updated.');
+
+        echo $averageRating;
         exit;
     }
 }

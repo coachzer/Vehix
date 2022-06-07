@@ -30,19 +30,19 @@ class Topic_model extends CI_Model
         }
 
         if ($slug === FALSE) {
+
             $user_id = $this->session->userdata('user_id');
-            // Posts
-            $this->db->select('*');
-            $this->db->from('topics');
+            // Post
             $this->db->order_by("topics.id", "DESC");
             $this->db->join('categories', 'categories.id = topics.category_id');
-            $query = $this->db->get();
+            $query = $this->db->get('topics');
 
             $topicResult = $query->result_array();
 
             $topic_arr = array();
             foreach ($topicResult as $topic) {
                 $id = $topic['id'];
+                $user_id = $topic['user_id'];
                 $category_id = $topic['category_id'];
                 $title = $topic['title'];
                 $slug = $topic['slug'];
@@ -82,6 +82,7 @@ class Topic_model extends CI_Model
 
                 $topic_arr[] = array(
                     "id" => $id,
+                    "user_id" => $user_id,
                     "category_id" => $category_id,
                     "title" => $title,
                     "slug" => $slug,
@@ -97,6 +98,7 @@ class Topic_model extends CI_Model
 
             return $topic_arr;
         }
+
 
         $query = $this->db->get_where('topics', array('slug' => $slug));
         return $query->row_array();

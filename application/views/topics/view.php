@@ -31,7 +31,7 @@
     <?php if ($this->session->userdata('user_id') == $topic['user_id'] or $this->session->userdata('user_id') == 1) : ?>
         <hr>
 
-        <div class="form-group mt-2 mb-1 gap-2 overlay-right d-flex ">
+        <div class="form-group mb-3 gap-2 overlay-right d-flex ">
             <a class="btn btn-primary float-sm-start" href="<?php echo base_url(); ?>topics/edit/<?php echo $topic['slug']; ?>">Edit</a>
 
             <?php echo form_open('/topics/delete/' . $topic['id']); ?>

@@ -6,12 +6,6 @@ class Rating_model extends CI_Model
         $this->load->database();
     }
 
-    public function get_categories()
-    {
-        $query = $this->db->get('categories');
-        return $query->result_array();
-    }
-
     public function get_ratings()
     {
         $query = $this->db->get('ratings');
@@ -29,7 +23,7 @@ class Rating_model extends CI_Model
         $data = array(
             'category_id' => $this->input->post('category'),
             'rating_id' => $this->input->post('rating'),
-            'restaurant_id' => $topic_id,
+            'topic_id' => $topic_id,
             'user_id' => $id
         );
         return $this->db->insert('ratings_of_member', $data);
