@@ -28,9 +28,24 @@ class Topic_model extends CI_Model
         // form values
         $slug = url_title($this->input->post('title'));
 
+        $url = $this->input->post('url');
+
+        // stackoverflow - https://stackoverflow.com/questions/412467/how-to-embed-youtube-videos-in-php
+
+        $ytarray = explode("/", $url);
+        $ytendstring = end($ytarray);
+        $ytendarray = explode("?v=", $ytendstring);
+        $ytendstring = end($ytendarray);
+        $ytendarray = explode("&", $ytendstring);
+        $ytcode = $ytendarray[0];
+
+        $url = "https://www.youtube.com/embed/$ytcode";
+
         $data = array(
             'title' => $this->input->post('title'),
             'slug' => $slug,
+            'vehicle' => $this->input->post('vehicle'),
+            'url' => $url,
             'body' => $this->input->post('body'),
             'category_id' => $this->input->post('category_id'),
             'user_id' => $this->session->userdata('user_id'),
@@ -58,9 +73,22 @@ class Topic_model extends CI_Model
         // form values
         $slug = url_title($this->input->post('title'));
 
+        $url = $this->input->post('url');
+
+        $ytarray = explode("/", $url);
+        $ytendstring = end($ytarray);
+        $ytendarray = explode("?v=", $ytendstring);
+        $ytendstring = end($ytendarray);
+        $ytendarray = explode("&", $ytendstring);
+        $ytcode = $ytendarray[0];
+
+        $url = "https://www.youtube.com/embed/$ytcode";
+
         $data = array(
             'title' => $this->input->post('title'),
             'slug' => $slug,
+            'vehicle' => $this->input->post('vehicle'),
+            'url' => $url,
             'body' => $this->input->post('body'),
             'category_id' => $this->input->post('category_id'),
         );
@@ -83,5 +111,49 @@ class Topic_model extends CI_Model
         $this->db->join('categories', 'categories.id = topics.category_id');
         $query = $this->db->get_where('topics', array('category_id' => $category_id));
         return $query->result_array();
+    }
+
+    // Save user rating
+    public function userRating($user_id, $topic_id, $rating)
+    {
+        $this->db->select('*');
+        $this->db->from('ratings');
+        $this->db->where("topic_id", $topic_id);
+        $this->db->where("user_id", $user_id);
+        $userRatingquery = $this->db->get();
+
+        $userRatingResult = $userRatingquery->result_array();
+        if (count($userRatingResult) > 0) {
+
+            $postRating_id = $userRatingResult[0]['id'];
+            // Update
+            $value = array('rating' => $rating);
+            $this->db->where('id', $postRating_id);
+            $this->db->update('ratings', $value);
+        } else {
+            $userRating = array(
+                "topic_id" => $topic_id,
+                "user_id" => $user_id,
+                "rating" => $rating
+            );
+
+            $this->db->insert('ratings', $userRating);
+        }
+
+        // Average rating
+        $this->db->select('ROUND(AVG(rating),1) as averageRating');
+        $this->db->from('rating');
+        $this->db->where("topic_id", $topic_id);
+        $ratingquery = $this->db->get();
+
+        $topicResult = $ratingquery->result_array();
+
+        $rating = $topicResult[0]['averageRating'];
+
+        if ($rating == '') {
+            $rating = 0;
+        }
+
+        return $rating;
     }
 }
