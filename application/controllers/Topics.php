@@ -148,8 +148,7 @@ class Topics extends CI_Controller
     {
 
         // user_id
-        $user_id = $this->session->userdata('id');
-        print_r($user_id);
+        $user_id = $this->session->userdata('user_id');
 
         // POST values
         $topic_id = $this->input->post('topic_id');

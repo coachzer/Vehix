@@ -34,6 +34,7 @@
     CKEDITOR.replace('editor1');
 </script>
 
+<!-- Script -->
 <script type='text/javascript'>
     $(document).ready(function() {
 
@@ -41,7 +42,7 @@
         $('.ratingbar').rating({
             showCaption: false,
             showClear: false,
-            size: 'sm'
+            size: 'lg'
         });
 
         // Rating change
@@ -51,7 +52,7 @@
             var topic_id = splitid[1];
 
             $.ajax({
-                url: '<?php echo base_url() ?>topics/updateRating',
+                url: '<?= base_url() ?>topics/updaterating',
                 type: 'post',
                 data: {
                     topic_id: topic_id,

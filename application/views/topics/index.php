@@ -1,3 +1,19 @@
+<?php
+foreach ($topics as $topic) {
+    $id = $topic['id'];
+    $category_id = $topic['category_id'];
+    $slug = $topic['slug'];
+    $vehicle = $topic['vehicle'];
+    $url = $topic['url'];
+    $body = $topic['body'];
+    $topic_image = $topic['topic_image'];
+    $date = $topic['date'];
+    $rating = $topic['rating'];
+    $averagerating = $topic['averagerating'];
+}
+
+?>
+
 <div class="row shadow p-3 mb-4 bg-body rounded">
     <h2 class="text-center"><?= $title ?></h2>
 </div>
@@ -21,16 +37,15 @@
 
         <hr>
         <?= $id ?>
-        <div class="topic-action text-cent">
+        <div class="topic-action text-center">
             <!-- Rating Bar -->
             <input id="topic_<?php echo $topic['id']; ?>" value="<?php echo $topic['rating']; ?>" class="rating-loading ratingbar" data-min="0" data-max="5" data-step="1">
-            <?php echo $topic['averagerating']; ?>
-            <?php echo "averagerating_" . $topic['id']; ?>
+
             <!-- Average Rating -->
             <div>
                 Average Rating:
-                <span id="averagerating_<?php echo $topic['id']; ?>">
-                    <?php echo $topic['averagerating'] ?>
+                <span id="averagerating_<?php echo "averagerating_" . $topic['id']; ?>">
+                    <?php echo $topic['averagerating']; ?>
                 </span>
             </div>
         </div>
