@@ -65,7 +65,7 @@ class Topics extends CI_Controller
             // Upload Image
             $config['upload_path'] = './assets/images/topics';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '2048';
+            $config['max_size'] = '20,480';
             $config['max_width'] = '2000';
             $config['max_height'] = '2000';
 
@@ -158,7 +158,7 @@ class Topics extends CI_Controller
         $rating = $this->input->post('rating');
 
         // Update user rating and get Average rating of a post
-        $averageRating = $this->topic_model->userRating($user_id, $topic_id, $rating);
+        $averageRating = $this->topic_model->user_rating($user_id, $topic_id, $rating);
 
         // Set Message
         $this->session->set_flashdata('rating_posted', 'Your rating has been updated.');

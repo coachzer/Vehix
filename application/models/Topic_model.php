@@ -32,10 +32,12 @@ class Topic_model extends CI_Model
         if ($slug === FALSE) {
 
             $user_id = $this->session->userdata('user_id');
-            // Post
+            // Topic
             $this->db->order_by("topics.id", "DESC");
             $this->db->join('categories', 'categories.id = topics.category_id');
             $query = $this->db->get('topics');
+
+
 
             $topicResult = $query->result_array();
 
@@ -44,6 +46,7 @@ class Topic_model extends CI_Model
                 $id = $topic['id'];
                 $user_id = $topic['user_id'];
                 $category_id = $topic['category_id'];
+                $name = $topic['name'];
                 $title = $topic['title'];
                 $slug = $topic['slug'];
                 $vehicle = $topic['vehicle'];
@@ -51,6 +54,7 @@ class Topic_model extends CI_Model
                 $body = $topic['body'];
                 $topic_image = $topic['topic_image'];
                 $date = $topic['date'];
+
 
                 // User rating
                 $this->db->select('rating');
@@ -84,6 +88,7 @@ class Topic_model extends CI_Model
                     "id" => $id,
                     "user_id" => $user_id,
                     "category_id" => $category_id,
+                    'name' => $name,
                     "title" => $title,
                     "slug" => $slug,
                     "vehicle" => $vehicle,
@@ -267,7 +272,7 @@ class Topic_model extends CI_Model
     }
 
     // Save user rating
-    public function userRating($user_id, $topic_id, $rating)
+    public function user_rating($user_id, $topic_id, $rating)
     {
         $this->db->select('*');
         $this->db->from('ratings');
