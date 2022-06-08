@@ -147,7 +147,7 @@ class Topics extends CI_Controller
     }
 
     // Update rating
-    public function updateRating()
+    public function update_rating()
     {
 
         // user_id

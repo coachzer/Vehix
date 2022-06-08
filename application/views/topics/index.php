@@ -24,7 +24,7 @@
         <div class="post">
             <div class="topic-action text-center">
                 <!-- Rating Bar -->
-                <input id="topic_<?php echo $topic['id']; ?>" value="<?php echo $topic['rating']; ?>" class="rating-loading ratingbar" data-min="0" data-max="5" data-step="1">
+                <input id="topic_<?php echo $topic['id']; ?>" value="<?php echo $topic['averagerating']; ?>" class="rating-loading ratingbar" data-min="0" data-max="5" data-step="1">
                 <hr>
                 <!-- Average Rating -->
                 <div>

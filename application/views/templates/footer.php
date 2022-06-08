@@ -55,7 +55,7 @@
             var topic_id = splitid[1];
 
             $.ajax({
-                url: '<?= base_url() ?>topics/updateRating',
+                url: '<?php echo base_url() ?>topics/update_rating',
                 type: 'post',
                 data: {
                     topic_id: topic_id,

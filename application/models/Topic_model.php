@@ -37,8 +37,6 @@ class Topic_model extends CI_Model
             $this->db->join('categories', 'categories.id = topics.category_id');
             $query = $this->db->get('topics');
 
-
-
             $topicResult = $query->result_array();
 
             $topic_arr = array();
@@ -268,6 +266,69 @@ class Topic_model extends CI_Model
         $this->db->order_by('topics.id', 'DESC');
         $this->db->join('categories', 'categories.id = topics.category_id');
         $query = $this->db->get_where('topics', array('category_id' => $category_id));
+        $topicResult = $query->result_array();
+
+        $topic_arr = array();
+        foreach ($topicResult as $topic) {
+            $id = $topic['id'];
+            $user_id = $topic['user_id'];
+            $category_id = $topic['category_id'];
+            $name = $topic['name'];
+            $title = $topic['title'];
+            $slug = $topic['slug'];
+            $vehicle = $topic['vehicle'];
+            $url = $topic['url'];
+            $body = $topic['body'];
+            $topic_image = $topic['topic_image'];
+            $date = $topic['date'];
+
+
+            // User rating
+            $this->db->select('rating');
+            $this->db->from('ratings');
+            $this->db->where("user_id", $user_id);
+            $this->db->where("topic_id", $id);
+            $userRatingquery = $this->db->get();
+
+            $userpostResult = $userRatingquery->result_array();
+
+            $userRating = 0;
+            if (count($userpostResult) > 0) {
+                $userRating = $userpostResult[0]['rating'];
+            }
+
+            // Average rating
+            $this->db->select('ROUND(AVG(rating),1) as averageRating');
+            $this->db->from('ratings');
+            $this->db->where("topic_id", $id);
+            $ratingquery = $this->db->get();
+
+            $topicResult = $ratingquery->result_array();
+
+            $rating = $topicResult[0]['averageRating'];
+
+            if ($rating == '') {
+                $rating = 0;
+            }
+
+            $topic_arr[] = array(
+                "id" => $id,
+                "user_id" => $user_id,
+                "category_id" => $category_id,
+                'name' => $name,
+                "title" => $title,
+                "slug" => $slug,
+                "vehicle" => $vehicle,
+                "body" => $body,
+                "url" => $url,
+                "rating" => $userRating,
+                "topic_image" => $topic_image,
+                "date" => $date,
+                "averagerating" => $rating
+            );
+        }
+
+        return $topic_arr;
         return $query->result_array();
     }
 
