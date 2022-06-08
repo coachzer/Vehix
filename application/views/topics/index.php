@@ -9,11 +9,11 @@
         <hr>
         <h5>Vehicle: <?php echo $topic['vehicle']; ?></h5>
         <div class="col-md-3">
-            <img width="200px" class="mx-5 my-3" src="<?php echo site_url(); ?>assets/images/topics/<?php echo $topic['topic_image']; ?>">
+            <img width="100%" class="my-5" src="<?php echo site_url(); ?>assets/images/topics/<?php echo $topic['topic_image']; ?>">
         </div>
         <div class="col-md-9">
             <small class="topic-date">Posted on: <?php echo $topic['date']; ?> in <strong><?php echo $topic['name']; ?></strong></small><br>
-            <?php echo word_limiter($topic['body'], 60); ?>
+            <?php echo word_limiter($topic['body'], 80); ?>
             <br>
             <br>
             <p class="text-end">

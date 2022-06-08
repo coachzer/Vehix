@@ -65,7 +65,7 @@ class Topics extends CI_Controller
             // Upload Image
             $config['upload_path'] = './assets/images/topics';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '20,480';
+            $config['max_size'] = '20480';
             $config['max_width'] = '2000';
             $config['max_height'] = '2000';
 
