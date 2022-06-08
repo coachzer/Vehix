@@ -34,7 +34,7 @@ class Topic_model extends CI_Model
             $user_id = $this->session->userdata('user_id');
             // Topic
             $this->db->order_by("topics.id", "DESC");
-            $this->db->join('categories', 'categories.id = topics.category_id');
+            //$this->db->join('categories', 'categories.id = topics.category_id');
             $query = $this->db->get('topics');
 
             $topicResult = $query->result_array();
@@ -44,7 +44,7 @@ class Topic_model extends CI_Model
                 $id = $topic['id'];
                 $user_id = $topic['user_id'];
                 $category_id = $topic['category_id'];
-                $name = $topic['name'];
+                //$name = $topic['name'];
                 $title = $topic['title'];
                 $slug = $topic['slug'];
                 $vehicle = $topic['vehicle'];
@@ -86,7 +86,7 @@ class Topic_model extends CI_Model
                     "id" => $id,
                     "user_id" => $user_id,
                     "category_id" => $category_id,
-                    'name' => $name,
+                    //'name' => $name,
                     "title" => $title,
                     "slug" => $slug,
                     "vehicle" => $vehicle,
@@ -264,16 +264,15 @@ class Topic_model extends CI_Model
     public function get_topics_by_category($category_id)
     {
         $this->db->order_by('topics.id', 'DESC');
-        $this->db->join('categories', 'categories.id = topics.category_id');
-        $query = $this->db->get_where('topics', array('category_id' => $category_id));
+        //$this->db->join('categories', 'categories.id = topics.category_id');
+        $query = $this->db->get('topics');
         $topicResult = $query->result_array();
 
         $topic_arr = array();
         foreach ($topicResult as $topic) {
             $id = $topic['id'];
             $user_id = $topic['user_id'];
-            $category_id = $topic['category_id'];
-            $name = $topic['name'];
+            //$name = $topic['name'];
             $title = $topic['title'];
             $slug = $topic['slug'];
             $vehicle = $topic['vehicle'];
@@ -315,7 +314,7 @@ class Topic_model extends CI_Model
                 "id" => $id,
                 "user_id" => $user_id,
                 "category_id" => $category_id,
-                'name' => $name,
+                //'name' => $name,
                 "title" => $title,
                 "slug" => $slug,
                 "vehicle" => $vehicle,
