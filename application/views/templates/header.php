@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ciVehicle</title>
+    <title>Vehix</title>
     <!-- <link rel="stylesheet" href="https://bootswatch.com/5/lux/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://bootswatch.com/5/cosmo/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -19,11 +19,13 @@
     <!-- with v4.1.0 Krajee SVG theme is used as default (and must be loaded as below) - include any of the other theme CSS files as mentioned below (and change the theme property of the plugin) -->
     <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/star-rating.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/star-rating.min.js"></script>
 
     <!-- important mandatory libraries -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js" type="text/javascript"></script>
 
     <!-- with v4.1.0 Krajee SVG theme is used as default (and must be loaded as below) - include any of the other theme JS files as mentioned below (and change the theme property of the plugin) -->
@@ -78,7 +80,9 @@
                     <?php endif; ?>
                     <?php if ($this->session->userdata('logged_in')) : ?>
                         <li class="nav-item">
-                            <a class="nav-link text-white"><?php echo ($this->session->userdata('username')); ?></a>
+                            <strong>
+                                <a class="nav-link text-white"><?php echo ($this->session->userdata('username')); ?></a>
+                            </strong>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="<?php echo base_url(); ?>topics/create">Create a Topic</a>

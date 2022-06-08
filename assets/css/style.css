@@ -73,6 +73,17 @@ body {
     margin-bottom: 15px;
 }
 
+.xbtn {
+	display: inline;
+}
+
+/* YouTube */
+.yt-player {
+	border: 20px solid #000000;
+	border-radius: .25rem;
+	max-width: 100%;
+}
+
 /* Footer */
 #footer {
 	display: flex;

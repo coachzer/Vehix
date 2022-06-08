@@ -23,17 +23,19 @@
 
         <hr>
 
-        <div class="topic-action text-center">
-            <!-- Rating Bar -->
-            <input id="topic_<?php echo $topic['id']; ?>" value="<?php echo $topic['rating']; ?>" class="rating-loading ratingbar" data-min="0" data-max="5" data-step="1">
-            <hr>
-            <!-- Average Rating -->
-            <!-- <div>
-                Average Rating:
-                <span id="averagerating_<?php echo "averagerating_" . $topic['id']; ?>">
-                    <?php echo $topic['averagerating']; ?>
-                </span>
-            </div> -->
+        <div class="post">
+            <div class="topic-action text-center">
+                <!-- Rating Bar -->
+                <input id="topic_<?php echo $topic['id']; ?>" value="<?php echo $topic['rating']; ?>" class="rating-loading ratingbar" data-min="0" data-max="5" data-step="1">
+                <hr>
+                <!-- Average Rating -->
+                <div>
+                    Average Rating:
+                    <span id="averagerating_<?php echo "averagerating_" . $topic['id']; ?>">
+                        <?php echo $topic['averagerating']; ?>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 <?php endforeach; ?>

@@ -24,7 +24,7 @@
 
     <div class="col-md-12">
         <p style="text-align: center">
-            <iframe title="Youtube video player" src="<?php echo $topic['url'] ?>" width="800" height="480" frameborder="0" allowfullscreen></iframe>
+            <iframe class="yt-player" title="Youtube video player" src="<?php echo $topic['url'] ?>" width="800" height="480" frameborder="0" allowfullscreen></iframe>
         </p>
     </div>
 
@@ -43,19 +43,19 @@
 </div>
 
 
-<div class="row shadow p-3 mb-4 bg-body rounded">
+<div class="row shadow p-3 mb-4 bg-body rounded" style="max-width: 100rem;">
     <h3>Comments</h3>
     <?php if ($comments) :  ?>
         <?php foreach ($comments as $comment) : ?>
-            <div class="card bg-light mb-3" style="max-width: 100rem;">
-                <div class="card-body">
-                    <p class="card-text"><?php echo $comment['body']; ?> [by <strong><?php echo $comment['name']; ?></strong> ]</p>
-                    <?php if ($this->session->userdata('user_id') == 1) : ?>
-                        <?php echo form_open('/comments/delete/' . $comment['id']); ?>
-                        <input type="submit" value="[X]" class="btn-link text-danger">
-                        </form>
-                    <?php endif; ?>
-                </div>
+            <div class="mb-2 col-md-9">
+                <p><?php echo $comment['body']; ?> [by <strong><?php echo $comment['name']; ?></strong> ]</p>
+            </div>
+            <div class="mb-2 col-md-3 text-end">
+                <?php if ($this->session->userdata('user_id') == 1) : ?>
+                    <?php echo form_open('/comments/delete/' . $comment['id']); ?>
+                    <input type="submit" value="Delete" class="btn btn-danger mb-2 ">
+                    </form>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
     <?php else : ?>

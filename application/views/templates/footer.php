@@ -2,10 +2,11 @@
 <div id="footer">
     <footer>
         <div class="container">
-            <div class="row text-center">
+            <div class="row shadow-lg text-center mb-4">
                 <hr>
                 <div class="col-md-6">
                     <h5>Made by:</h5>
+                    <hr>
                     <p>Nikola Kovačević<br>kovacevicnikola@protonmail.com</p>
                     <br>
                     <p>Find more info <br>on <a href="<?php echo base_url(); ?>contact">Contact</a> page.</p>
@@ -23,7 +24,9 @@
             </div> -->
                 <div class="col-12 mb-3">
                     <hr>
-                    <em>&copy;Vehix </em>
+                    <strong>
+                        <em>&copy;Vehix </em>
+                    </strong>
                 </div>
             </div>
         </div>
@@ -53,13 +56,12 @@
 
             $.ajax({
                 url: '<?= base_url() ?>topics/updateRating',
-                type: 'POST',
+                type: 'post',
                 data: {
                     topic_id: topic_id,
                     rating: value,
                 },
                 success: function(response) {
-                    $(topic_id).text(response);
                     $('#averagerating_' + topic_id).text(response);
                 }
             });
