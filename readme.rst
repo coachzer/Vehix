@@ -1,6 +1,8 @@
 ###################
-What is CodeIgniter
+Information System for Helping People Fix Their Vehicles
 ###################
+
+Developed by Codeigniter Framework.
 
 CodeIgniter is an Application Development Framework - a toolkit - for people
 who build web sites using PHP. Its goal is to enable you to develop projects
@@ -11,61 +13,71 @@ you creatively focus on your project by minimizing the amount of code needed
 for a given task.
 
 *******************
-Release Information
+Description and Functionalities
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+This information system, code name: Vehix, is an information system developed in order for people to be able to create topics as well as categories regarding their need to fix their personal vehicle. Application allows the users to comment and create a discussion on each topic.
+
+There are three types of users:
+
+1. Anonymous User - users that didn’t register an account
+ 		- Able to visit all of the static pages: 
+			- Home
+			- About
+			- Contact
+			- Help
+		- Able to see and leave comments on topics, anonymously or to put in a name and an email.
+		- Able to see the latest topics and categories.
+		- Able to:
+			- register
+			- log in
+			- logout
+
+2. Registered User - user with a registered account
+	- Being a registered user, this user inherits all the functionalities of the Anonymous user.
+	- Registered users can log in at any time, and have following functionalities:
+		- create a topic 
+		- contains uploading of images
+		- embedding YouTube links and 
+		- creating a body that is easily formatted using CKEditor 4
+		- edit topic & delete topic
+		- leave a rating on the topic
+		- create a category
+				- delete category
+		- leave a comment
+
+3. Admin - moderates the website and has full control of all the functionalities
+	- Being an admin, this user inherits all the functionalities of the Registered User.
+	- Admins moderate and have following functionalities:
+		- create a topic 
+		- contains uploading of images
+		- embedding YouTube links and 
+		- creating a body that is easily formatted using CKEditor 4
+			- edit topic & delete any topic
+			- leave a rating on the topic
+		- create a category
+			- delete any category
+		- leave a comment
+			- delete any comment
+
 
 **************************
-Changelog and New Features
+Technologies Used
 **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+Following technologies were used for the development and implementation of this application:
+ - FAMNIT phpMyAdmin Database - all the data is stored in the SISIII2022_ [89191015] database.
+ - Codeigniter 3 Framework - the whole project is based on this MVC framework. Through exercises on the faculty to YouTube tutorials, I got very familiar with the foundations needed to build a complete application from scratch.
+ - For the design of the front-end Bootstrap 5 was used and an additional custom css script.
+ - XAMPP Apache Web Server - to establish a local server and do the testing on the localhost.
+ - WinSCP - to connect to the student account and FAMNIT server.
+ - Visual Studio Code - my personal code editor, for its enormous choice of quality extensions. For this project specifically of most help were Error Lense and Codeigniter 3 extension.
 
 *******************
-Server Requirements
+Most Demanding Part
 *******************
 
-PHP version 5.6 or newer is recommended.
+At the beginning it was getting used to the Codeigniter Framework, but with the help of the Visual Studio Code extension for it, I quickly adapted to it. Then it was configuring models and controllers, and getting the data to be displayed in the views. Everything was done locally first, using XAMPP Apache Web Server. 
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+Lastly, setting up the configuration and the database on the FAMNIT server was a small headache, but nothing too complicated.
 
-************
-Installation
-************
-
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
-
-*******
-License
-*******
-
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
-
-*********
-Resources
-*********
-
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
