@@ -1,24 +1,16 @@
 ###################
-Information System for Helping People Fix Their Vehicles
+Vehicle Repair Assistance Information System
 ###################
 
-Developed by Codeigniter Framework.
+Developed using CodeIgniter Framework.
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+CodeIgniter is an Application Development Framework - a toolkit - for individuals who build websites using PHP. Its primary aim is to enable faster project development by providing a rich set of libraries for common tasks, as well as a simple interface and logical structure to access these libraries. With CodeIgniter, developers can focus on their projects creatively, minimizing the amount of code required for a given task.
 
 *******************
-Description and Functionalities
+Description and Functionality
 *******************
 
-This information system, code name: Vehix, is an information system developed in order for people to be able to create topics as well as categories regarding their need to fix their personal vehicle. Application allows the users to comment and create a discussion on each topic.
-
-There are three types of users:
+The information system, codenamed Vehix, is a web-based application designed to assist users in creating and discussing topics related to vehicle repairs. The application allows users to create topics and categories, comment on topics, and engage in discussions. There are three types of users:
 
 1. Anonymous User - users that didn’t register an account
  		- Able to visit all of the static pages: 
@@ -66,18 +58,18 @@ Technologies Used
 **************************
 
 Following technologies were used for the development and implementation of this application:
- - FAMNIT phpMyAdmin Database - all the data is stored in the SISIII2022_ [89191015] database.
- - Codeigniter 3 Framework - the whole project is based on this MVC framework. Through exercises on the faculty to YouTube tutorials, I got very familiar with the foundations needed to build a complete application from scratch.
- - For the design of the front-end Bootstrap 5 was used and an additional custom css script.
- - XAMPP Apache Web Server - to establish a local server and do the testing on the localhost.
- - WinSCP - to connect to the student account and FAMNIT server.
- - Visual Studio Code - my personal code editor, for its enormous choice of quality extensions. For this project specifically of most help were Error Lense and Codeigniter 3 extension.
+ - FAMNIT phpMyAdmin Database: All data is stored in the SISIII2022_[89191015] database.
+ - CodeIgniter 3 Framework: The entire project is based on this MVC framework, utilizing its foundational features to build a complete application.
+ - Front-end Design: Bootstrap 5 and custom CSS were used for designing the user interface.
+ - XAMPP Apache Web Server: Local server setup for testing and development purposes.
+ - WinSCP: Used to connect to the student account and FAMNIT server.
+ - Visual Studio Code: Personal code editor with useful extensions, including Error Lens and CodeIgniter 3 extension, greatly facilitating development tasks.
 
 *******************
 Most Demanding Part
 *******************
 
-At the beginning it was getting used to the Codeigniter Framework, but with the help of the Visual Studio Code extension for it, I quickly adapted to it. Then it was configuring models and controllers, and getting the data to be displayed in the views. Everything was done locally first, using XAMPP Apache Web Server. 
+The initial challenge was familiarizing myself with the CodeIgniter Framework, but with the assistance of the Visual Studio Code extension, I quickly adapted to it. Configuring models and controllers, as well as displaying data in views, were the subsequent tasks, all of which were done locally using XAMPP Apache Web Server for testing.
 
-Lastly, setting up the configuration and the database on the FAMNIT server was a small headache, but nothing too complicated.
+Lastly, setting up the configuration and database on the FAMNIT server posed a minor challenge but was overcome without complications.
 
